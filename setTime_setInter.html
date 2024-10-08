@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+    <title>setInterval and setInterval and background color switcher</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hello Ajay</h1>
+      <div class="buttons">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="goBack">goBack</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const h1 = document.querySelector("h1");
+    const start = document.querySelector("#start");
+    const stop = document.querySelector("#stop");
+    const goBack = document.querySelector("#goBack");
+
+    // function changeTitle() {
+    //   h1.innerText = "Ajay you have entered in the room after 4 second";
+    // }
+
+    // goBack.addEventListener("click", function () {
+    //   h1.innerText = "Hello Ajay";
+    // });
+    // // const date = Date.now();
+    // const date = new Date()
+    // console.log(date);
+
+    // const time = date.getTime();
+
+    // const current_dateTime = function () {
+    //     // console.log(h1)
+    //   h1.innerText =  ` date is ${date} `;
+    //   console.log('time is going')
+    // };
+
+    // start.addEventListener('click', function(e){
+    //    const intervalId =  setInterval(current_dateTime, 1000)
+    //     // setTimeout(changeTitle, 2000);
+
+    //     stop.addEventListener('click', function(e){
+    //     console.log('stop clicked');
+
+    //     clearInterval(intervalId)
+    // })
+
+    // })
+
+    // Random Color Generate and background change randomly
+
+    const body = document.querySelector("body");
+
+    const randomColor = function () {
+      const hex = "0123456789ABCDEF";
+      let color = "#";
+      
+      for (let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    };
+
+    let intervalId;
+    const changeBodyColor = function (color) {
+        if (!intervalId) {
+            intervalId = setInterval(changeColor, 1000);
+        }
+      function changeColor() {
+        body.style.backgroundColor = randomColor();
+        console.log(randomColor());
+        
+      }
+    };
+
+    const stopChangingColor = function () {
+      clearInterval(intervalId);
+      intervalId = null;
+
+    };
+
+    stop.addEventListener("click", stopChangingColor);
+    start.addEventListener("click", changeBodyColor);
+  </script>
+</html>
